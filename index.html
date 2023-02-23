@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Групповые операции c массивами</title>
+</head>
+<body>
+<script>
+    let hotels = [
+        {
+            name: 'Престиж',
+            city: 'Пинеровка',
+            stars: 2,
+            price_per_day: 6200,
+            checkin_time: '14:00'
+        },
+        {
+            name: 'Элита+',
+            city: 'Литяжевка',
+            stars: 3,
+            price_per_day: 8500,
+            checkin_time: '16:00'
+        },
+        {
+            name: 'Козырь',
+            stars: 2,
+            price_per_day: 7000,
+            checkin_time: '13:00'
+        },
+        {
+            name: 'Премиум',
+            stars: 4,
+            price_per_day: 11200,
+            checkin_time: '12:00'
+        },
+    ];
+
+    let output_text = (hotel) => {
+        return `<hr><p>Наименование гостинцы: ${hotel.name}</p>
+<p>Количество звёзд: ${hotel.stars}</p>
+<p>Цена за сутки, руб: ${hotel.price_per_day}</p>
+<p>Время заселения: ${hotel.checkin_time}</p><hr>`;
+    };
+
+    document.write('<h2>Все гостиницы: </h2>')
+    hotels.map((hotel) => document.write(output_text(hotel)))
+
+    hotels.sort((a, b) => {
+        if (a.stars > b.stars) {
+            return -1;
+        }
+        if (a.stars < b.stars) {
+            return 1;
+        }
+        return 0;
+    })
+
+    document.write('<h2>Все отсортированные гостиницы по звёздам в убывающем порядке: </h2>')
+    hotels.map((hotel) => document.write(output_text(hotel)))
+
+    document.write('<h2>Список гостиниц не дороже 7000 руб: </h2>')
+    let new_hotels = hotels.filter(hotel => hotel.price_per_day <= 7000)
+    new_hotels.map((hotel) => document.write(output_text(hotel)))
+</script>
+</body>
+</html>
